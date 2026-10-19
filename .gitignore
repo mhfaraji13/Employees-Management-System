@@ -1,0 +1,102 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+artifacts/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.sln.ide
+
+# JetBrains Rider / ReSharper
+.idea/
+*.sln.iml
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Visual Studio Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+
+# ASP.NET Core
+wwwroot/lib/
+wwwroot/uploads/
+logs/
+*.log
+
+# Entity Framework
+*.db
+*.db-shm
+*.db-wal
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+secrets.json
+appsettings.*.local.json
+
+# Publish output
+publish/
+out/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Coverage
+coverage/
+coverage.*
+*.coverage
+*.coveragexml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.cache
+
+# Local certificates
+*.pfx
+*.p12
+
+# Azure
+.azure/
+
+# Docker
+docker-compose.override.yml
+
+# Node.js (if using frontend tooling)
+node_modules/
+
+# Package managers
+.npm/
+.pnpm-store/
+
+# Generated documentation
+*.xml
+
+# Optional: ignore local database files
+# *.mdf
+# *.ldf
