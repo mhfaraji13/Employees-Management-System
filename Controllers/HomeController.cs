@@ -17,6 +17,7 @@ public class HomeController : Controller
     {
         // _logger.LogInformation("Index seda zade shod");
         // _logger.LogInformation("mohammadhossein faraji");
+        var emp = new Employee {FirstName = "Ali" , MiddleName = "Alireza" , LastName = "Ahmadi"};
         return View();
     }
 
