@@ -408,7 +408,15 @@ namespace Employesmhfdev.Migrations
                     b.Property<DateTime>("ModifiedOn")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("OrderNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SystemCodeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SystemCodeId");
 
                     b.ToTable("SystemCodeDetails");
                 });
@@ -457,6 +465,17 @@ namespace Employesmhfdev.Migrations
                     b.Navigation("LeaveType");
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("Employesmhfdev.Models.SystemCodeDetail", b =>
+                {
+                    b.HasOne("Employesmhfdev.Models.SystemCode", "SystemCode")
+                        .WithMany()
+                        .HasForeignKey("SystemCodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SystemCode");
                 });
 #pragma warning restore 612, 618
         }
