@@ -18,11 +18,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        // _logger.LogInformation("Index seda zade shod");
-        // _logger.LogInformation("mohammadhossein faraji");
-       //var emp = new Employee {FirstName = "Ali" , MiddleName = "Alireza" , LastName = "Ahmadi"};
-       var count = _context.Countries.Count();
-        return View();
+       if (User.Identity.IsAuthenticated)
+        {
+            return View();
+        }
+        else
+        {
+            return Redirect("~/identity/account/login");
+        }
     }
 
     public IActionResult Privacy()

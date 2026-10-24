@@ -31,6 +31,7 @@ public class CitiesController : Controller
         }
 
         var city = await _context.Cities
+       //.Select<Country>(c=>c.Country)
             .Include(c => c.Country)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (city == null)
