@@ -24,7 +24,7 @@ namespace Employesmhfdev.Controllers
 
 
         // GET: RolesController
-        public async Task<IActionResult>  Index()
+        public async Task<IActionResult> Index()
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return View(roles);
@@ -47,12 +47,12 @@ namespace Employesmhfdev.Controllers
 
         public async Task<IActionResult> Create(RoleViewModel roleViewModel)
         {
-           var identityRole = new IdentityRole();
-           identityRole.Name = roleViewModel.RoleName;
+            var identityRole = new IdentityRole();
+            identityRole.Name = roleViewModel.RoleName;
 
-           var result = await _roleManager.CreateAsync(identityRole);
+            var result = await _roleManager.CreateAsync(identityRole);
 
-           if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -60,18 +60,98 @@ namespace Employesmhfdev.Controllers
 
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("",error.Description);
+                ModelState.AddModelError("", error.Description);
             }
 
 
 
 
-                return View(roleViewModel);
-            
-            
+            return View(roleViewModel);
+
+
         }
 
-        
+
+        // Get: Edit/Role/5
+
+        public async Task<IActionResult> Edit(string? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var role = await _roleManager.FindByIdAsync(id);
+
+            if (role == null)
+            {
+                return NotFound();
+
+            }
+
+            var model = new RoleViewModel()
+            {
+                Id = role.Id,
+                RoleName = role.Name
+            };
+
+            return View(model);
+
+
+
+        }
+
+
+        // Post: Edit/Role/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Edit(string id , RoleViewModel roleViewModel)
+        {
+            if(id != roleViewModel.Id)
+            {
+                return NotFound();
+            }
+
+            var exists = await _roleManager.RoleExistsAsync(roleViewModel.RoleName);
+
+
+            if (exists == true)
+            {
+                ModelState.AddModelError("", "This role name alreadey exists.");
+
+                return View(roleViewModel);
+            }
+
+            var role = await _roleManager.FindByIdAsync(id);
+            if(role == null)
+            {
+                return NotFound();
+            }
+
+            role.Name = roleViewModel.RoleName;
+
+            var result = await _roleManager.UpdateAsync(role);
+            if(result.Succeeded)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+
+            foreach ( var error in result.Errors)
+            {
+                ModelState.AddModelError("", error.Description);
+
+               
+
+            }
+
+            return View(roleViewModel);
+        }
+
+
 
 
 

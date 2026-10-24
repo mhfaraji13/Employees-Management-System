@@ -18,7 +18,7 @@ namespace Employesmhfdev.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Banks.ToListAsync());
+            return View(await _context.Users.ToListAsync());
         }
 
         // Get: /Banks/Details/5
